@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Zaky - Abstract Light</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #2f74c0;
+            --primary-dark: #22508f;
+            --title: #2c3458;
+            --soft: #eaf4fd;
+            --soft-2: #badaf4;
+            --grad-end: #a9cdee;
+            --dot-1: #7099c1;
+            --dot-2: #8e7fd0;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+        
+        body {
+            background: linear-gradient(135deg, #ffffff 0%, var(--soft) 35%, var(--soft-2) 70%, var(--grad-end) 100%);
+            background-size: 400% 400%;
+            animation: gradientMove 12s ease infinite;
+            background-image: 
+                radial-gradient(var(--dot-1) 1px, transparent 1px), 
+                radial-gradient(var(--dot-2) 1px, var(--soft) 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            color: #1f2937;
+            font-family: 'Press Start 2P', monospace;
+            display: flex; flex-direction: column; align-items: center;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%, 0 0, 20px 20px; }
+            50% { background-position: 100% 50%, 20px 20px, 0 0; }
+            100% { background-position: 0% 50%, 0 0, 20px 20px; }
+        }
+
+        .container { 
+            width: 100%; 
+            max-width: 600px; 
+            padding: 100px 20px 80px 20px; /* Padding atas ditambah biar gak ketutup navbar */
+            display: flex; 
+            flex-direction: column; 
+            gap: 50px; 
+        }
+        
+        /* Navbar Dibuat Lebih Tinggi dan Tetap Miring */
+        .top-navbar {
+            width: calc(100% - 40px);
+            max-width: 560px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 3px solid #000000;
+            box-shadow: 4px 4px 0px #000000;
+            padding: 18px 20px; /* Padding ditingkatkan biar lebih tinggi/berisi */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-1deg);
+            z-index: 100;
+            transition: transform 0.2s ease;
+        }
+        .top-navbar:hover {
+            transform: translateX(-50%) rotate(0deg) scale(1.01);
+        }
+        .top-logo {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 5px 8px;
+            border: 2px solid #000000;
+            font-size: 8px;
+        }
+        .welcome-text-big {
+            font-size: 7px;
+            color: var(--title);
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+        .top-dev {
+            font-size: 7px;
+        }
+
+        /* Hero Section */
+        .hero-card {
+            background: rgba(255, 255, 255, 0.95); 
+            border: 4px solid #000000; 
+            box-shadow: 8px 8px 0px #000000; 
+            padding: 35px 20px; 
+            width: 100%; 
+            text-align: left;
+            backdrop-filter: blur(5px);
+            transform: rotate(-1deg);
+            transition: transform 0.2s ease;
+        }
+        .hero-card:hover {
+            transform: rotate(0deg) scale(1.01);
+        }
+
+        .available-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--soft);
+            border: 2px solid #000000;
+            padding: 6px 10px;
+            font-size: 7px;
+            margin-bottom: 20px;
+            box-shadow: 3px 3px 0px #000000;
+        }
+        .dot-green {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            border: 1px solid #000000;
+        }
+
+        .hero-subtitle {
+            font-size: 8px;
+            color: #4b5563;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .hero-title {
+            font-size: 20px;
+            color: var(--title);
+            line-height: 1.4;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 0px var(--soft-2);
+            word-break: break-word;
+        }
+
+        .hero-desc {
+            font-size: 8px;
+            line-height: 2.2;
+            color: #374151;
+            margin-bottom: 25px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .hero-btn-primary {
+            background: var(--primary);
+            color: #ffffff;
+            border: 3px solid #000000;
+            box-shadow: 4px 4px 0px #000000;
+            padding: 12px 15px;
+            font-size: 8px;
+            font-family: 'Press Start 2P', monospace;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+        .hero-btn-primary:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #000000; }
+
+        .hero-btn-secondary {
+            background: #ffffff;
+            color: #000000;
+            border: 3px solid #000000;
+            box-shadow: 4px 4px 0px #000000;
+            padding: 12px 15px;
+            font-size: 8px;
+            font-family: 'Press Start 2P', monospace;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+        .hero-btn-secondary:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #000000; background: var(--soft); }
+
+        .hero-footer-tags {
+            margin-top: 25px;
+            font-size: 7px;
+            color: var(--title);
+            border-top: 2px dashed #000000;
+            padding-top: 15px;
+        }
+
+        .reveal-section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            width: 100%;
+        }
+
+        .reveal-section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-card {
+            background: rgba(255, 255, 255, 0.95); 
+            border: 4px solid #000000; 
+            box-shadow: 8px 8px 0px #000000; 
+            padding: 40px 25px; 
+            width: 100%; 
+            text-align: center;
+            backdrop-filter: blur(5px);
+            margin-bottom: 40px;
+        }
+
+        .pixel-glitch-card {
+            transform: rotate(1.5deg);
+        }
+
+        .profile-img-container {
+            width: 150px; height: 150px; margin: 0 auto 20px auto;
+            border: 4px solid #000000; border-radius: 50%;
+            overflow: hidden; background: var(--soft-2);
+            box-shadow: 4px 4px 0px #000000;
+        }
+        .profile-img-container img { width: 100%; height: 100%; object-fit: cover; }
+
+        .display-name { font-size: 20px; color: var(--title); margin-bottom: 15px; }
+        .username { font-size: 14px; color: #4b5563; margin-bottom: 25px; }
+        .bio { font-size: 12px; line-height: 2.0; color: #374151; }
+
+        .sosmed-title { font-size: 16px; color: var(--title); margin-bottom: 30px; }
+        .sosmed-btn {
+            display: flex; align-items: center; gap: 15px; 
+            background: var(--soft);
+            border: 3px solid #000000;
+            box-shadow: 4px 4px 0px #000000;
+            padding: 18px; margin-bottom: 15px; text-decoration: none;
+            color: #000000; font-size: 10px; transition: transform 0.1s, box-shadow 0.1s, background 0.2s;
+        }
+        .sosmed-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #000000; background: var(--soft-2); }
+        .sosmed-btn i { color: var(--primary); }
+
+        .about-title { font-size: 16px; color: var(--title); margin-bottom: 30px; }
+        .about-text { font-size: 12px; line-height: 2.5; text-align: left; color: #374151; }
+
+        .song-title { font-size: 14px; color: var(--title); margin-bottom: 25px; text-align: center; }
+        .song-item {
+            font-size: 10px;
+            background: var(--soft);
+            border: 2px solid #000000;
+            padding: 14px;
+            margin-bottom: 12px;
+            box-shadow: 3px 3px 0px #000000;
+            color: #1f2937;
+            text-align: left;
+        }
+
+        .skills-title { font-size: 14px; color: var(--title); margin-bottom: 25px; text-align: center; }
+        .skill-item {
+            font-size: 10px;
+            background: var(--soft);
+            border: 2px solid #000000;
+            padding: 14px;
+            margin-bottom: 12px;
+            box-shadow: 3px 3px 0px #000000;
+            color: #1f2937;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-align: left;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+        .skill-item:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px #000000;
+            background: var(--soft-2);
+        }
+        .skill-item i { color: var(--primary); }
+
+        .sell-title { font-size: 14px; color: var(--title); margin-bottom: 25px; text-align: center; }
+        .sell-item {
+            font-size: 9px;
+            background: var(--soft);
+            border: 2px solid #000000;
+            padding: 14px;
+            margin-bottom: 12px;
+            box-shadow: 3px 3px 0px #000000;
+            color: #1f2937;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            text-align: left;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+        .sell-item:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px #000000;
+            background: var(--soft-2);
+        }
+        .sell-price {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 4px 8px;
+            border: 2px solid #000000;
+            font-size: 8px;
+            white-space: nowrap;
+        }
+
+
+        .capcut-logo {
+            width: 1.4em; height: 1.4em; flex-shrink: 0; display: inline-block;
+            background-color: var(--primary);
+            -webkit-mask: url(data:image/png;base64,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) center / contain no-repeat;
+            mask: url(data:image/png;base64,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) center / contain no-repeat;
+        }
+
+        .sell-contact {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            background: var(--primary);
+            color: #ffffff;
+            border: 3px solid #000000;
+            box-shadow: 4px 4px 0px #000000;
+            padding: 16px; margin-top: 20px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 10px; text-decoration: none;
+            transition: transform 0.1s, box-shadow 0.1s, background 0.2s;
+        }
+        .sell-contact:hover { background: var(--primary-dark); transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #000000; }
+        .sell-contact:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #000000; }
+
+        .games-title { font-size: 14px; color: var(--title); margin-bottom: 25px; text-align: center; }
+        .game-item {
+            display: flex; align-items: center; gap: 15px;
+            background: var(--soft);
+            border: 3px solid #000000;
+            box-shadow: 4px 4px 0px #000000;
+            padding: 15px 18px; margin-bottom: 12px; text-align: left;
+            color: #000000; font-size: 9px; transition: transform 0.1s, box-shadow 0.1s, background 0.2s;
+        }
+        .game-item:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #000000; background: var(--soft-2); }
+        .game-item i { color: var(--primary); }
+
+        .qris-title { font-size: 14px; color: var(--title); margin-bottom: 25px; text-align: center; }
+        .qris-img-container {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 20px auto;
+            border: 4px solid #000000;
+            box-shadow: 4px 4px 0px #000000;
+            background: #ffffff;
+            padding: 10px;
+        }
+        .qris-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .qris-instruction {
+            font-size: 10px;
+            line-height: 2.2;
+            color: #374151;
+            padding: 0 10px;
+        }
+
+        .pixel-btn {
+            font-family: 'Press Start 2P', monospace; 
+            background: var(--primary); 
+            color: #ffffff;
+            border: 4px solid #000000;
+            box-shadow: 6px 6px 0px #000000;
+            padding: 20px; font-size: 12px; cursor: pointer; width: 100%;
+            margin-top: 30px;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+        .pixel-btn:hover { background: var(--primary-dark); transform: translate(-2px, -2px); box-shadow: 8px 8px 0px #000000; }
+        .pixel-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #000000; }
+
+        .footer-thanks {
+            margin-top: 30px;
+            font-size: 8px;
+            color: #4b5563;
+            text-align: center;
+            line-height: 2;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-navbar">
+        <div class="top-logo">V</div>
+        <div class="welcome-text-big">ZAKY WEBSITE</div>
+        <span class="top-dev">ZAKY.DEV</span>
+    </div>
+
+    <div class="container">
+        <div class="hero-card">
+            <div class="available-badge">
+                <span class="dot-green"></span> AVAILABLE FOR PROJECTS
+            </div>
+            <div class="hero-subtitle">HELLO, I'M</div>
+            <h1 class="hero-title">ZAKY<br>OFFICIAL</h1>
+            <p class="hero-desc">
+                Web & Bot Developer yang suka membuat sesuatu yang <b>simple, cepat, dan beda</b>, anjay!
+            </p>
+            <div class="hero-buttons">
+                <a href="#profile-section" class="hero-btn-primary">EXPLORE PROFILE ↓</a>
+                <a href="https://t.me/ZakyNotWeak" target="_blank" class="hero-btn-secondary">CONTACT ME</a>
+            </div>
+            <div class="hero-footer-tags">
+                01 / WEB &nbsp;&nbsp; 02 / BOT &nbsp;&nbsp; 03 / UI
+            </div>
+        </div>
+
+        <div class="reveal-section section-card pixel-glitch-card" id="profile-section">
+            <div class="profile-img-container">
+                <img src="https://files.catbox.moe/dxhc7c.jpg" alt="Zaky">
+            </div>
+            <h1 class="display-name">ⲹⲀⲔⲨ</h1>
+            <p class="username">@ZakyNotWeak</p>
+            <p class="bio">Gokil abis! Selamat datang di halaman profil resmi gw. Scroll kebawah buat kenal lebih dekat sama gw, anjay!</p>
+        </div>
+
+        <div class="reveal-section section-card">
+            <h2 class="sosmed-title">List Sosmed Gw Dan Sosmed Xaviera</h2>
+            <a href="https://t.me/testimuanizaky" target="_blank" class="sosmed-btn"><i class="fa-brands fa-telegram"></i> @testimuanizaky <span style="margin-left:auto">[CH]</span></a>
+            <a href="https://t.me/CHWEB2APEKAHJAKIH" target="_blank" class="sosmed-btn"><i class="fa-brands fa-telegram"></i> @CHWEB2APEKAHJAKIH <span style="margin-left:auto">[CH]</span></a>
+            <a href="https://t.me/ZakyNotWeak" target="_blank" class="sosmed-btn"><i class="fa-solid fa-user"></i> @ZakyNotWeak <span style="margin-left:auto">[ACC]</span></a>
+            <a href="https://t.me/WebtwoapkZkly_bot" target="_blank" class="sosmed-btn"><i class="fa-solid fa-robot"></i> @WebtwoapkZkly_bot <span style="margin-left:auto">[BOT]</span></a>
+            <a href="https://whatsapp.com/channel/0029VbCG3I8JkK7EZXwayr16" target="_blank" class="sosmed-btn"><i class="fa-brands fa-whatsapp"></i> ALL INFORMATION ZAKY <span style="margin-left:auto">[WA CH]</span></a>
+            <a href="https://t.me/+NK8Dxusd2odlZWRl" target="_blank" class="sosmed-btn"><i class="fa-brands fa-telegram"></i> gb apk bug free <span style="margin-left:auto">[GRP]</span></a>
+            <a href="https://tiktok.com/@unkw0nus3rs" target="_blank" class="sosmed-btn"><i class="fa-brands fa-tiktok"></i> tt Xaviera <span style="margin-left:auto">[TIKTOK]</span></a>
+            <a href="https://tiktok.com/@z4kyt1kt0k" target="_blank" class="sosmed-btn"><i class="fa-brands fa-tiktok"></i> tt zaky <span style="margin-left:auto">[TIKTOK]</span></a>
+        </div>
+
+        <div class="reveal-section section-card">
+            <h2 class="about-title">Tentang Gw</h2>
+            <div class="about-text">
+                Kenalin nih, gw Zaky! Umur gw msih anak smp tahun, lahir pas banget tanggal 12, wkwk! Halaman ini punya tema putih dan gradasi biru yang hidup banget, gokil!<br><br>
+                Soal urusan perut dan lidah, makanan favorit gw itu gak lain dan gak bukan adalah sate, anjir, rasanya bener-bener gak ada obat enaknya!<br><br>
+                Kalau lagi santai, gw demen banget nonton. spongebob tuh kesukaan gw nomor satu paling keren parah, cihuy!<br><br>
+                Cita-cita gw pengen banget jadi SuperMan, tapi Susah Banget kewujud.<br><br>
+                Keseharian gw banyak dihabiskan buat sekolah, turu, dan mengurus berbagai channel serta grup di Telegram karena komunitasnya asik-asik banget.<br><br>
+                Thanks banget udah meluangkan waktu buat scroll sampai sejauh ini dan kenalan sama gw. Stay cool, salam hangat dari @ZakyNotWeak, anjay!
+            </div>
+        </div>
+
+        <div class="reveal-section section-card">
+            <h3 class="song-title"><i class="fa-solid fa-music"></i> Lagu Favorit Gw</h3>
+            <div class="song-item">🎵 Lily</div>
+            <div class="song-item">🎵 trackmaker</div>
+            <div class="song-item">🎵 aot</div>
+            <div class="song-item">🎵 kicau mania</div>
+            <div class="song-item">🎵 stecu</div>
+        </div>
+
+        <div class="reveal-section section-card">
+            <h3 class="skills-title"><i class="fa-solid fa-laptop-code"></i> What Can I Do?</h3>
+            <div class="skill-item"><i class="fa-solid fa-robot"></i> Bot Development</div>
+            <div class="skill-item"><i class="fa-solid fa-globe"></i> Web Development</div>
+            <div class="skill-item"><span class="capcut-logo" role="img" aria-label="CapCut"></span> Editing (Low Skills)</div>
+            <div class="skill-item"><i class="fa-solid fa-code"></i> HTML/CSS</div>
+        </div>
+
+        <div class="reveal-section section-card">
+            <h3 class="sell-title"><i class="fa-solid fa-store"></i> I Also Sell :</h3>
+            <div class="sell-item"><span>FULL UP OTAX</span> <span class="sell-price">50.000 IDR</span></div>
+            <div class="sell-item"><span>FULL UP TRANPENDEN</span> <span class="sell-price">25.000 IDR</span></div>
+            <div class="sell-item"><span>RESSELER TRANPENDEN</span> <span class="sell-price">45.000 IDR</span></div>
+            <div class="sell-item"><span>BASE XYRO ROMBAK</span> <span class="sell-price">4.000 IDR</span></div>
+            <div class="sell-item"><span>BASE ARCHIENT</span> <span class="sell-price">7.500 IDR</span></div>
+            <div class="sell-item" style="justify-content: center; background: var(--soft-2);"><span>AND MORE 🔥</span></div>
+            <a href="https://t.me/ZakyNotWeak" target="_blank" class="sell-contact"><i class="fa-brands fa-telegram"></i> CONTACT</a>
+        </div>
+
+        <div class="reveal-section section-card">
+            <h2 class="games-title"><i class="fa-solid fa-gamepad"></i> Game Favorit Gw</h2>
+            <div class="game-item"><i class="fa-solid fa-shield-halved"></i> roblox blox fruit <span style="margin-left:auto">[Grinding]</span></div>
+            <div class="game-item"><i class="fa-solid fa-crosshairs"></i> roblox lumber tycoon 2 <span style="margin-left:auto">[Chill]</span></div>
+            <div class="game-item"><i class="fa-solid fa-cube"></i> Roblox command n army <span style="margin-left:auto">[War]</span></div>
+            <div class="game-item"><i class="fa-solid fa-cubes"></i> Minecraft <span style="margin-left:auto">[SANDBOX]</span></div>
+            <div class="game-item"><i class="fa-solid fa-gun"></i> Free Fire <span style="margin-left:auto">[BR]</span></div>
+        </div>
+
+        <div class="reveal-section section-card">
+            <h3 class="qris-title"><i class="fa-solid fa-qrcode"></i> Payment Qris Zaky</h3>
+            <div class="qris-img-container">
+                <img src="https://files.catbox.moe/c0617l.jpg" alt="QRIS Zaky">
+            </div>
+            <p class="qris-instruction">Scan Qris Diatas Terus Kirim Bukti Transfer Ke @ZakyNotWeak</p>
+            
+            <button class="pixel-btn" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+                <i class="fa-solid fa-arrow-up"></i> BALIK KE ATAS
+            </button>
+
+            <div class="footer-thanks">
+                THANKS FOR VISITING MY WEBSITE ✨
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal-section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
